@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block libs %}
+    {{ super() }}
+    {% if page.is_homepage %}    
+        <script src="{{ base_url }}/javascript/homepage.js" defer></script>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if page.nb_url %}
+    <a href="{{ page.nb_url }}" title="Download Notebook" class="md-content__button md-icon">
+        {% include ".icons/material/download.svg" %}
+    </a>
+{% endif %}
+{% if page and page.meta %}
+    <h1 class="header-with-tags"> {{ page.meta.title }} </h1>
+    {% if page.meta.summary %}
+        <div role="doc-subtitle"> {{ page.meta.summary }} </div>
+    {% endif %}
+{% endif %}
+    
+{{ super() }}
+
+<details class="info" open="">
+<summary><em>External Links Disclaimer</em></summary>
+<p><em>NHS England makes every effort to ensure that external links are accurate, up to date and relevant, however we cannot take responsibility for pages maintained by external providers.</em></p>
+<p><em>NHS England is not affiliated with any of the websites or companies in the links to external websites.</em></p>
+<p><em>If you come across any external links that do not work, we would be grateful if you could report them by raising an issue on our <a href="https://github.com/NHSDigital/rap-community-of-practice/issues">RAP Community of Practice GitHub</a>.</em></p>
+</details>
+
+{% endblock content %}
